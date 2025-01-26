@@ -18,7 +18,7 @@ Tested Python Version: 3.9 (should also work on later versions and versions that
     3. index.py: Chunk and index the transcription into vectordb(ChromaDB)
     4. query.py: Start a chatbot to query the question
 	    1. Run the program
-	    2. Open the link in browser and start to ask questions <img src="https://github.com/liujinmarshall/rag_podcast/blob/main/docs/img/chatbot.png?raw=true" />
+	    2. Open the link in browser and start to ask questions <img src="https://raw.githubusercontent.com/liujinmarshall/podcast_rag/refs/heads/main/docs/img/chatbot.png" />
     5. summarize.py: Summarize the transcription into a concise summary. One directory for each podcast
     6. delete_files.py: Remove audio media files (older than 24 hours) in case the file upload exceeds quota. Anyway the files uploaded for more than 48 hours will be purged automatically
 
