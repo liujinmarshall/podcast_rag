@@ -26,5 +26,8 @@ Tested Python Version: 3.9 (should also work on later versions and versions that
 * Chinese
 * English (to be added)
 
+## Note
+Please adhere to user agreement of podcast provider. This repo is for personal research purpose only.
+
 ## History
 * 1/26/2025: 0.01 (Initial Release)
