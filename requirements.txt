@@ -1,0 +1,6 @@
+chromadb
+google-generativeai
+gradio
+openai
+jupyter
+tiktoken

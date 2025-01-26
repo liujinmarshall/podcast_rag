@@ -169,3 +169,12 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# ChromaDB
+chroma_db
+
+# Notebook
+*.ipynb
+
+# data
+data/
