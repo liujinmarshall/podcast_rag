@@ -9,10 +9,11 @@ Tested Python Version: 3.9 (should also work on later versions and versions that
 
 ## Steps
 1. Clone this github repo
-2. Copy podcasts.example.csv to podcasts.csv and add RSS URL entries
-3. Install python dependencies from requirements.txt
-4. Export Google Gemini API Key as GEMINI_API_KEY and OpenAI API Key as OPENAI_API_KEY
-5. Run following script to achieve the functionality below (using python xxx.py)
+2. Make a directory "data"
+3. Copy podcasts.example.csv to data/podcasts.csv and add RSS URL entries
+4. Install python dependencies from requirements.txt
+5. Export Google Gemini API Key as GEMINI_API_KEY and OpenAI API Key as OPENAI_API_KEY
+6. Run following script to achieve the functionality below (using python xxx.py)
     1. download.py: Download podcast audio media files to local with incremental mode. One directory for each podcast 
     2. transcribe.py: Transcribe the audio media files into transcription. One directory for each podcast
     3. index.py: Chunk and index the transcription into vectordb(ChromaDB)
