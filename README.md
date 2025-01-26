@@ -1,5 +1,5 @@
 # podcast_rag
-Use RAG (Retrieval Augmentation Generation) to understand podcast
+Use RAG (Retrieval Augmentation Generation) to understand podcast, and ask questions on the transcripts
 
 Tested Python Version: 3.9 (should also work on later versions and versions that are not too old)
 
