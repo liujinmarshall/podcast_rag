@@ -4,8 +4,8 @@
 已测试 Python 版本：3.9 (应该也适用于更新的版本和不太旧的版本)
 
 ## 前提条件
-Python 环境以及运行 Python 的知识
-Google Gemini API 密钥和 OpenAI API 密钥
+* Python 环境以及并了解如何运行 Python 程序
+* Google Gemini API 密钥和 OpenAI API 密钥
 
 ## 步骤
 1. 克隆此 Github 仓库
