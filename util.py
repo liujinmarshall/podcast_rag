@@ -10,6 +10,7 @@ data_dir = "data"
 CONFIG = {
     "gemini_key": "",
     "podcast_list_file": f"{data_dir}/podcasts.csv",
+    "prompts_file": "podcast_prompts.tsv",
     "output_directory": f"{data_dir}/podcast_data",
     "audio_download_directory": f"{data_dir}/podcast_audio",
     "transcript_directory": f"{data_dir}/podcast_transcript",
@@ -95,6 +96,20 @@ def read_podcast_list(filename):
 
 def get_safe_podcast_name(podcast_name):
     return "".join(c if c.isalnum() else '_' for c in podcast_name)
+
+prompts = {}
+def read_prompts():
+    if (len(prompts) > 0):
+        return prompts
+    filename = CONFIG['prompts_file']
+    try:
+        with open(filename, 'r', encoding='utf-8') as tsvfile:
+            reader = csv.DictReader(tsvfile, delimiter='\t')
+            for row in reader:
+                prompts[row['language']] = row
+    except FileNotFoundError:
+        print(f"Error: Podcast list file not found: {filename}")
+    return prompts
 
 
 openai_ef = embedding_functions.OpenAIEmbeddingFunction(
