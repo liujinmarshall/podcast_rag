@@ -1,11 +1,12 @@
 import google.generativeai as genai
 import time
+import argparse
 from datetime import datetime, timedelta
 import os
 from datetime import datetime, timezone
 from util import *
 
-def delete_old_files(api_key):
+def delete_old_files(api_key, hours=24):
     genai.configure(api_key=api_key)
 
     deleted_files = []
@@ -23,7 +24,7 @@ def delete_old_files(api_key):
                 # Calculate time difference
                 time_difference = time_now - update_timestamp
 
-                if time_difference > timedelta(hours=24):
+                if time_difference > timedelta(hours=hours):
                     try:
                         genai.delete_file(file_info.name)
                         deleted_files.append(file_info)
@@ -44,6 +45,18 @@ def delete_old_files(api_key):
     else:
         print("\nNo files were deleted.")
 
+def get_retention():
+    parser = argparse.ArgumentParser(description="Retention time in hours")
+    parser.add_argument('--hours',
+                        type=int,  # Expect a string value
+                        help='Number of hours of file retention')
+    args = parser.parse_args()
+    return args.hours
+
 if __name__ == "__main__":
     api_key = get_gemini_key()
-    delete_old_files(api_key)
+    hours = get_retention()
+    if hours:
+        delete_old_files(api_key, hours)
+    else:
+        delete_old_files(api_key)
