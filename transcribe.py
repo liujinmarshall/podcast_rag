@@ -30,7 +30,7 @@ def transcribe_audio_with_history(audio_file_path: str, initial_prompt: str, con
             ]
         )
 
-        response = chat.send_message(initial_prompt)
+        response = chat.send_message(initial_prompt, request_options={"timeout": 1000})
 
         full_transcription = response.text
 
@@ -50,7 +50,7 @@ def transcribe_audio_with_history(audio_file_path: str, initial_prompt: str, con
                     ]
                 }
             ]
-            response = chat.send_message(continuous_prompt)
+            response = chat.send_message(continuous_prompt, request_options={"timeout": 1000})
             full_transcription += response.text
 
         print("\nTranscription complete.")
@@ -65,13 +65,18 @@ def transcribe_audio_with_history(audio_file_path: str, initial_prompt: str, con
 
 
 def transcript_audiofile(audio_file, podcast_name, podcast_language,podcast_title, podcast_shownotes):
+    if (len(audio_file) == 0):
+        return
     download_dir = CONFIG["transcript_directory"] + "/" + podcast_name
     transcript_filename = download_dir + "/" + audio_file + ".transcript.txt"
     if (check_file_exists_and_size(transcript_filename, 100)):
         #print(f"{transcript_filename} exists... skip transcribing...")
         return
-    initial_prompt = f"这是播客《{podcast_name}》的一期节目，请生成音频记录，包括每个转录的说话者信息和时间轴（开始时间），按照事件发生的时间来组织转录。播客标题: {podcast_title}。播客shownotes: {podcast_shownotes}"
-    continuous_prompt = "请根据上面已经生成的内容继续生成转录文字稿。"
+    prompts = read_prompts()
+    #initial_prompt = f"这是播客《{podcast_name}》的一期节目，请生成音频记录，包括每个转录的说话者信息和时间轴（开始时间），按照事件发生的时间来组织转录。播客标题: {podcast_title}。播客shownotes: {podcast_shownotes}"
+    #continuous_prompt = "请根据上面已经生成的内容继续生成转录文字稿。"
+    initial_prompt = prompts[podcast_language]['initial_prompt'].format(podcast_name=podcast_name, podcast_title=podcast_title, podcast_shownotes=podcast_shownotes)
+    continuous_prompt = prompts[podcast_language]['continuous_prompt']
     transcribed_text = transcribe_audio_with_history(CONFIG["audio_download_directory"] + "/" + podcast_name + "/" + audio_file, initial_prompt, continuous_prompt)
 
     if transcribed_text:
