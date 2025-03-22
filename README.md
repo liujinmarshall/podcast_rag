@@ -23,6 +23,9 @@ Tested Python Version: 3.9 (should also work on later versions and versions that
     5. summarize.py: Summarize the transcription into a concise summary. One directory for each podcast
     6. delete_files.py: Remove audio media files (older than 24 hours) in case the file upload exceeds quota. Anyway the files uploaded for more than 48 hours will be purged automatically
 
+## Architecture
+<img src="https://raw.githubusercontent.com/liujinmarshall/podcast_rag/refs/heads/main/docs/img/podcast_rag_arch.png" />
+
 ## Language Support
 * Chinese
 * English (to be added)
